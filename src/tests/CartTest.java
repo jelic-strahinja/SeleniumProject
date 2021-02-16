@@ -5,14 +5,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class CartTest extends BaseTest{
-	
+	/*
 	@BeforeMethod
 	public void beforeMethod() throws InterruptedException {
 		driver.navigate().to("http://automationpractice.com/index.php");
 		login();
 	}
 	
-	@Test
+	//@Test
 	public void addItemToCart() throws InterruptedException {
 		action.moveToElement(myAccountPage.getWomanCardBtn()).build().perform();
 		myAccountPage.clickTShirtBtn();
@@ -34,5 +34,5 @@ public class CartTest extends BaseTest{
 			Thread.sleep(1000);
 			Assert.assertEquals(cartPage.getCartItemList().size(), 0);
 		}
-	}
+	}*/
 }
