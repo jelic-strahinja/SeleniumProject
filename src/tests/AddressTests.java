@@ -1,12 +1,13 @@
 package tests;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class AddressTests extends BaseTest{
 	
-	int forAssert = addressPage.getDeleteBtnList().size();
+	
 	
 	@BeforeMethod
 	public void beforeMethod() throws InterruptedException {
@@ -19,53 +20,55 @@ public class AddressTests extends BaseTest{
 	
 		
 	
-	//@Test
+	//@Test (priority = 10)
 	public void updateAddress() throws InterruptedException {
+		String firstName, lastName, company, address1, address2, city, state, 
+		zipCode, homePhone, mobile, additionalText, alias;
+		
+		firstName = reader.getData("TC2-Address", 3, 5);
+		lastName = reader.getData("TC2-Address", 3, 6);
+		company = reader.getData("TC2-Address", 3, 7);
+		address1 = reader.getData("TC2-Address", 3, 8);
+		address2 = reader.getData("TC2-Address", 3, 9);
+		city = reader.getData("TC2-Address", 3, 10);
+		state = reader.getData("TC2-Address", 3, 11);
+		zipCode = reader.getData("TC2-Address", 3, 12);
+		homePhone = reader.getData("TC2-Address", 3, 13);
+		mobile = reader.getData("TC2-Address", 3, 14);
+		additionalText = reader.getData("TC2-Address", 3, 15);
+		alias = reader.getData("TC2-Address", 3, 16);
 		
 		myAccountPage.clickMyAddressesButton();
-		Thread.sleep(2000);
 		addressPage.clickUpdateBtn(1);
-		addAddressPage.insertFirstName("Aleksa");
-		Thread.sleep(500);
-		addAddressPage.insertLastName("Obradovic");
-		Thread.sleep(500);
-		addAddressPage.insertCompany("Samsung");
-		Thread.sleep(500);
-		addAddressPage.insertAddress("Gunduliceva 1");
-		Thread.sleep(500);
-		addAddressPage.insertAddress2("Gunduliceva 2");
-		Thread.sleep(500);
-		addAddressPage.insertCity("Nis");
-		Thread.sleep(500);
-		addAddressPage.clickState("Florida");
-		Thread.sleep(500);
+		addAddressPage.insertFirstName(firstName);
+		addAddressPage.insertLastName(lastName);
+		addAddressPage.insertCompany(company);
+		addAddressPage.insertAddress(address1);
+		addAddressPage.insertAddress2(address2);
+		addAddressPage.insertCity(city);
+		addAddressPage.clickState(state);
 		scrollIntoView(addAddressPage.getZipCodeField());
-		addAddressPage.insertZipCode("25000");
-		Thread.sleep(500);
+		addAddressPage.insertZipCode(zipCode);
 		scrollIntoView(addAddressPage.getSaveAddressBtn());
-		addAddressPage.insertPhone("021654321");
-		Thread.sleep(500);
-		addAddressPage.insertMobilePhone("063654321");
-		Thread.sleep(500);
-		addAddressPage.insertAdditionalInfo("This is test for update");
-		Thread.sleep(500);
-		addAddressPage.insertAlias("Gunduliceva");
-		Thread.sleep(500);
+		addAddressPage.insertPhone(homePhone);
+		addAddressPage.insertMobilePhone(mobile);
+		addAddressPage.insertAdditionalInfo(additionalText);
+		addAddressPage.insertAlias(alias);
 		addAddressPage.clickSaveAddressBtn();
-		Thread.sleep(2000);
 		
-		Assert.assertEquals(addressPage.getSingleAddressAssert(1).getText(), "GUNDULICEVA");	
+		Assert.assertEquals(addressPage.getSingleAddressAssert(1).getText(), reader.getData("TC2-Address", 6, 17));	
 	}
 	
 	
 	
-	// @Test
+	//@Test (priority = 15)
 	public void deleteAddress() throws InterruptedException {
 		
 		myAccountPage.clickMyAddressesButton();
 		Thread.sleep(2000);
-		if(forAssert < 1) {
-		addressPage.clickDeleteBtn(forAssert);
+		int forAssert = addressPage.getDeleteBtnList().size();
+		if(forAssert > 1) {
+		addressPage.clickDeleteBtn(forAssert - 1);
 		Thread.sleep(500);
 		alertAcc();
 		
@@ -73,60 +76,56 @@ public class AddressTests extends BaseTest{
 	
 		}
 	}
-	//@Test
-	public void deleteOnlyAddress() throws InterruptedException {
-		
-		myAccountPage.clickMyAddressesButton();
-		Thread.sleep(2000);
-		if(forAssert == 1) {
-			addressPage.clickDeleteBtn(0);
-			Thread.sleep(500);
-			alertAcc();
-			
-			Assert.assertEquals(addressPage.getDeleteBtnList().size(), (0));
-		}
-		
-		//BUG NE BI TREBALO DA MOZE DA SE OBRISE JEDINA ADRESA PRE NEGO STO SE DODA DRUGA
-	}
 	
-	//@Test
+	
+	//@Test (priority = 5)
 	public void addAddress() throws InterruptedException {
 		
+		
+		String firstName, lastName, company, address1, address2, city, state, 
+		zipCode, homePhone, mobile, additionalText, alias;
+		
+		firstName = reader.getData("TC2-Address", 3, 23);
+		lastName = reader.getData("TC2-Address", 3, 24);
+		company = reader.getData("TC2-Address", 3, 25);
+		address1 = reader.getData("TC2-Address", 3, 26);
+		address2 = reader.getData("TC2-Address", 3, 27);
+		city = reader.getData("TC2-Address", 3, 28);
+		state = reader.getData("TC2-Address", 3, 29);
+		zipCode = reader.getData("TC2-Address", 3, 30);
+		homePhone = reader.getData("TC2-Address", 3, 31);
+		mobile = reader.getData("TC2-Address", 3, 32);
+		additionalText = reader.getData("TC2-Address", 3, 33);
+		alias = reader.getData("TC2-Address", 3, 34);
+		
 		myAccountPage.clickMyAddressesButton();
-		Thread.sleep(2000);
-		addressPage.clickAddAddressBtn();
 		Thread.sleep(1000);
-		addAddressPage.insertFirstName("Strahinja");
-		Thread.sleep(500);
-		addAddressPage.insertLastName("Jelic");
-		Thread.sleep(500);
-		addAddressPage.insertCompany("Apple");
-		Thread.sleep(500);
-		addAddressPage.insertAddress("Almaska 1");
-		Thread.sleep(500);
-		addAddressPage.insertAddress2("Almaska 2");
-		Thread.sleep(500);
-		addAddressPage.insertCity("Beograd");
-		Thread.sleep(500);
-		addAddressPage.clickState("Alabama");
-		Thread.sleep(500);
+		int forAssert = addressPage.getDeleteBtnList().size();
+		addressPage.clickAddAddressBtn();
+		addAddressPage.insertFirstName(firstName);
+		addAddressPage.insertLastName(lastName);
+		addAddressPage.insertCompany(company);
+		addAddressPage.insertAddress(address1);
+		addAddressPage.insertAddress2(address2);
+		addAddressPage.insertCity(city);
+		addAddressPage.clickState(state);
 		scrollIntoView(addAddressPage.getZipCodeField());
-		addAddressPage.insertZipCode("21000");
-		Thread.sleep(500);
+		addAddressPage.insertZipCode(zipCode);
 		scrollIntoView(addAddressPage.getSaveAddressBtn());
-		addAddressPage.insertPhone("021123456");
-		Thread.sleep(500);
-		addAddressPage.insertMobilePhone("063123456");
-		Thread.sleep(500);
-		addAddressPage.insertAdditionalInfo("This is test");
-		Thread.sleep(500);
-		addAddressPage.insertAlias("Almaska 1");
-		Thread.sleep(500);
+		addAddressPage.insertPhone(homePhone);
+		addAddressPage.insertMobilePhone(mobile);
+		addAddressPage.insertAdditionalInfo(additionalText);
+		addAddressPage.insertAlias(alias);
 		addAddressPage.clickSaveAddressBtn();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		
 		Assert.assertEquals(addressPage.getDeleteBtnList().size(), (forAssert+1));	
 	}
 	
+	@AfterMethod
+	public void afterMethod() {
+		driver.manage().deleteAllCookies();
+		driver.navigate().refresh();
+	}
 	
 }

@@ -13,14 +13,15 @@ public class WishlistTest extends BaseTest{
 		login();
 	}
 	
-	//@Test (priority = 5)
+	@Test (priority = 5)
 	public void createWishlist() {
+		String wishListName = reader.getData("TC5-MyWishList", 2, 1);
 		myAccountPage.clickMyWishlistBtn();
-		myWishlistPage.insertWishlistName("Strahinjin Wishlist");
+		myWishlistPage.insertWishlistName(wishListName);
 		myWishlistPage.clickSaveWishlistBtn();
 	}
 	
-	//@Test (priority = 10)
+	@Test (priority = 10)
 	public void deleteWishlist() {
 		myAccountPage.clickMyWishlistBtn();
 		if(myWishlistPage.getListDeleteBtn().size() <= 0) {
@@ -31,7 +32,7 @@ public class WishlistTest extends BaseTest{
 		alertAcc();
 	}
 	
-	//@Test
+	
 	@AfterMethod
 	public void afterMethod() {
 		driver.manage().deleteAllCookies();
